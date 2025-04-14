@@ -3,30 +3,19 @@
 // defines
 #define Width 256
 #define Height 192
-#define TABLE_SIZE 128 // Tamanho da tabela reduzido para 128 valores
+#define TABLE_SIZE 31 // Tamanho da tabela reduzido para 128 valores
 
 // Tabelas de seno e cosseno (valores multiplicados por 256 para maior precisão)
-const i16 SIN_TABLE[TABLE_SIZE] = {
-    0, 12, 25, 37, 50, 62, 75, 87, 99, 111, 122, 133, 144, 155, 165, 175,
-    184, 193, 201, 209, 216, 223, 229, 235, 240, 245, 249, 252, 254, 255, 256, 255,
-    254, 252, 249, 245, 240, 235, 229, 223, 216, 209, 201, 193, 184, 175, 165, 155,
-    144, 133, 122, 111, 99, 87, 75, 62, 50, 37, 25, 12, 0, -12, -25, -37,
-    -50, -62, -75, -87, -99, -111, -122, -133, -144, -155, -165, -175, -184, -193, -201, -209,
-    -216, -223, -229, -235, -240, -245, -249, -252, -254, -255, -256, -255, -254, -252, -249, -245,
-    -240, -235, -229, -223, -216, -209, -201, -193, -184, -175, -165, -155, -144, -133, -122, -111,
-    -99, -87, -75, -62, -50, -37, -25, -12
+const i8 SIN_TABLE[31] = {
+     0,  23,  45,  67,  87, 105, 120, 126, 127, 126, 120, 105,  87,  67,  45,  23,
+     0, -23, -45, -67, -87,-105,-120,-126,-127,-126,-120,-105, -87, -67, -45
 };
 
-const i16 COS_TABLE[TABLE_SIZE] = {
-    256, 255, 254, 252, 249, 245, 240, 235, 229, 223, 216, 209, 201, 193, 184, 175,
-    165, 155, 144, 133, 122, 111, 99, 87, 75, 62, 50, 37, 25, 12, 0, -12,
-    -25, -37, -50, -62, -75, -87, -99, -111, -122, -133, -144, -155, -165, -175, -184, -193,
-    -201, -209, -216, -223, -229, -235, -240, -245, -249, -252, -254, -255, -256, -255, -254, -252,
-    -249, -245, -240, -235, -229, -223, -216, -209, -201, -193, -184, -175, -165, -155, -144, -133,
-    -122, -111, -99, -87, -75, -62, -50, -37, -25, -12, 0, 12, 25, 37, 50, 62,
-    75, 87, 99, 111, 122, 133, 144, 155, 165, 175, 184, 193, 201, 209, 216, 223,
-    229, 235, 240, 245, 249, 252, 254, 255
+const i8 COS_TABLE[31] = {
+   127, 126, 120, 105,  87,  67,  45,  23,   0, -23, -45, -67, -87,-105,-120,-126,
+  -127,-126,-120,-105, -87, -67, -45, -23,   0,  23,  45,  67,  87, 105, 120
 };
+
 
 // Dados do sprite (8x8 pixels em formato hexadecimal)
 
@@ -52,13 +41,12 @@ const u8 g_SpriteDataNeg[] = {
     0xC3  //   11000011
 };
 
-
 // Função principal
 void main()
 {
     // Ângulos iniciais dos sprites
     u8 angle_sprite1 = 0;
-    u8 angle_sprite2 = 64; // Diametralmente oposto (64 em 128 posições)
+    u8 angle_sprite2 = 15; // Diametralmente oposto (64 em 128 posições)
 	u8 RADIUS =84;
 
     // Inicializa SCREEN 2
@@ -73,13 +61,13 @@ void main()
 
     while (1)
     {
-        
+        Halt(); // Espera próxima VBLANK
 		// Calcula posições dos sprites com tabelas reduzidas
-        u8 sprite1_x = Width / 2 + RADIUS * COS_TABLE[angle_sprite1] / 256;
-        u8 sprite1_y = Height / 2 + RADIUS * SIN_TABLE[angle_sprite1] / 256;
+        i16 sprite1_x = Width / 2 + RADIUS * COS_TABLE[angle_sprite1] / 256;
+        i16 sprite1_y = Height / 2 + RADIUS * SIN_TABLE[angle_sprite1] / 256;
 
-        u8 sprite2_x = Width / 2 + RADIUS * COS_TABLE[angle_sprite2] / 256;
-        u8 sprite2_y = Height / 2 + RADIUS * SIN_TABLE[angle_sprite2] / 256;
+        i16 sprite2_x = Width / 2 + RADIUS * COS_TABLE[angle_sprite2] / 256;
+        i16 sprite2_y = Height / 2 + RADIUS * SIN_TABLE[angle_sprite2] / 256;
 
         // Atualiza posição
         VDP_SetSpriteSM1(0, sprite1_x, sprite1_y, 0, 15);

@@ -1,1 +1,1 @@
-Examples codes made with the MSXGL Library.
+C codes really simple samples made with the MSXGL Library.

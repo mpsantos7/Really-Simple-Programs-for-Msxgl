@@ -9,4 +9,6 @@ directPSGaccess.c makes a sound when pressing the space bar
 
 Akg_music_play.c plays an akg song defined in teste1pos.h.
 
+sprites_collision.c test hardware sprite collision.
+
 writesc5.c writes messages to screen5 (still in progress)

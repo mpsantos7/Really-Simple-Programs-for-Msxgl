@@ -1,7 +1,7 @@
 C codes really simple samples made with the MSXGL Library.
 
 mcu_3sprites.c and mcu_3sprites60degrees.c animate sprites, the former with two sprites at 180 degrees and the latter with three sprites at 60 degrees. 
-Both use trigonometric tables.
+Both use trigonometric tables with 31 values.
 
 fillVRAMSC1_example2.c applies VDP_FillVRAM_16K function
 

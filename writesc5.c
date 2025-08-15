@@ -1,6 +1,7 @@
 // Write messages on screen 5 with two 
 // different bitmap fonts
-//
+// Question the name user
+// write name user
 #include "msxgl.h"
 #include "print.h"
 #include "ascii.h"

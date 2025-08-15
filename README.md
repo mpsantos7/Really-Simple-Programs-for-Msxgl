@@ -11,4 +11,4 @@ Akg_music_play.c plays an akg song defined in teste1pos.h.
 
 sprites_collision.c test hardware sprite collision.
 
-writesc5.c writes messages to screen5 (still in progress)
+writesc5.c writes messages to screen5 and allows you to enter your name and receive a "Como vai .. ?"  (How are you, ____?) 

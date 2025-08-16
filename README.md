@@ -1,4 +1,4 @@
-C codes really simple samples made with the MSXGL Library.
+Really simple C samples made with the MSXGL Library for MSX computers.
 
 mcu_3sprites.c and mcu_3sprites60degrees.c animate sprites, the former with two sprites at 180 degrees and the latter with three sprites at 60 degrees. 
 Both use trigonometric tables with 31 values.

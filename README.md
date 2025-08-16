@@ -7,8 +7,9 @@ fillVRAMSC1_example2.c applies VDP_FillVRAM_16K function
 
 directPSGaccess.c makes a sound when pressing the space bar
 
-Akg_music_play.c plays an akg song defined in teste1pos.h.
+Akg_music_play.c plays an akg song defined in teste1pos.h. It is for 32k rom.
 
 sprites_collision.c test hardware sprite collision.
 
-writesc5.c writes messages to screen5 and allows you to enter your name and receive a "Como vai .. ?"  (How are you, ____?) 
+writesc5.c writes messages to screen5 and allows you to enter your name and receive a "Como vai .. ?"  (How are you, ____?). 
+Compile as MSX 2. 

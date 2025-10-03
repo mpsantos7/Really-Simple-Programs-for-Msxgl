@@ -1,42 +1,42 @@
 // mytitle_s5.c
-// Exemplo: desenha "Meu jogo de MSX2" centralizado em SCREEN 5 usando MSXgl
-// Requisitos (ver notas abaixo): adicionar o módulo "print" e incluir o font header.
+// Example: draws "Meu jogo de MSX2" centered in SCREEN 5 using MSXgl
+// Requirements (see notes below): add the "print" module and include the font header.
 
-#include "msxgl.h"               // inclui tipos e módulos (ou inclua especificamente print.h / vdp.h)
-#include "font/font_mgl_sample8.h" // font sample (usado em muitos samples do MSXgl)
+#include "msxgl.h"                 // includes types and modules (or specifically include print.h / vdp.h)
+#include "font/font_mgl_sample8.h" // sample font (used in many MSXgl samples)
 
 void main(void)
 {
     const c8 title[] = "Meu jogo de MSX2";
 
-    // --- Inicialização do modo gráfico (Screen 5 = bitmap MSX2) ---
-	VDP_ClearVRAM();
+    // --- Graphics mode initialization (Screen 5 = MSX2 bitmap) ---
+    VDP_ClearVRAM();
     VDP_SetMode(VDP_MODE_SCREEN5);
 
-    // --- Inicializa font bitmap (exemplo: g_Font_MGL_Sample8 está nos fonts do projeto) ---
+    // --- Initialize bitmap font (example: g_Font_MGL_Sample8 is part of the project fonts) ---
     Print_SetBitmapFont(g_Font_MGL_Sample8);
 
-    // --- Efeito visual: ativa outline (contorno) para deixar as letras "maiores/mais fortes") ---
+    // --- Visual effect: enable outline to make letters look "bigger/stronger" ---
     Print_SetOutline(TRUE, COLOR_GRAY);
 
-    // --- Centraliza horizontalmente: calcula largura aproximada em pixels ---
-    // Observação: font_mgl_sample8 costuma ter 8 px de largura por caracter; ajuste se usar outra font.
+    // --- Horizontal centering: calculate approximate width in pixels ---
+    // Note: font_mgl_sample8 usually has 8 px width per character; adjust if using another font.
     u8 len = 0;
     const c8 *p = title;
     while(*p++) len++;
 
-    const u8 CHAR_W = 8;             // largura em pixels da font escolhida (ajuste se necessário)
+    const u8 CHAR_W = 8;             // character width in pixels for the chosen font (adjust if needed)
     u16 textWidth = (u16)len * CHAR_W;
-    u16 x = (256 - textWidth) / 2;   // Screen5: largura = 256 pixels
-    u16 y = 40;                      // posição vertical (em pixels) - ajustar conforme desejar
+    u16 x = (256 - textWidth) / 2;   // Screen5: width = 256 pixels
+    u16 y = 40;                      // vertical position (in pixels) - adjust as desired
 
-    // --- Define posição (em pixels para modos bitmap) e desenha o texto ---
+    // --- Set position (in pixels for bitmap modes) and draw text ---
     Print_SetPosition(x, y);
     Print_DrawText(title);
 
-    // --- Loop infinito simples (o programa permanece com o título na tela) ---
+    // --- Simple infinite loop (the program keeps the title on screen) ---
     while(1)
     {
-        // Pode usar HALT() ou outras esperas de VBlank se preferir.
+        // You may use HALT() or other VBlank waits if preferred.
     }
 }
